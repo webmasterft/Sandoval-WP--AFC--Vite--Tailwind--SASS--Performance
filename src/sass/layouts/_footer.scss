@@ -1,0 +1,80 @@
+@use '../global' as *;
+
+footer {
+	.contact-form {
+		background: transparent !important;
+		box-shadow: none;
+		padding: 0;
+
+		@media screen and (min-width:$md) {
+			margin-bottom: 50px;
+		}
+
+		.boton {
+			justify-content: center;
+
+			@media screen and (min-width:$md) {
+				justify-content: flex-start;
+			}
+
+		}
+
+		.wpcf7-submit {
+			text-transform: uppercase;
+		}
+
+		.wpcf7 {
+			background: transparent !important;
+			border: 0;
+			box-shadow: none;
+			padding: 0;
+
+			@media screen and (min-width:$md) {
+				margin-bottom: 50px;
+			}
+		}
+
+		input {
+			background: none;
+			border: 1px solid $color-primary;
+			color: #fff;
+			padding: 15px !important;
+		}
+
+
+
+		::placeholder {
+			color: #fff
+		}
+
+		section:first-of-type,
+		.form-container {
+			display: block !important;
+		}
+
+		.title {
+			color: $color-primary;
+			font-size: 14px;
+			font-weight: bolder;
+			line-height: 17px;
+		}
+	}
+
+	.form-group {
+		&.with-icon {
+			input {
+				padding-left: 36px !important;
+			}
+
+		}
+
+		.icono {
+			top: 16px !important;
+
+			&.mail {
+				top: 18px !important;
+			}
+		}
+
+	}
+}

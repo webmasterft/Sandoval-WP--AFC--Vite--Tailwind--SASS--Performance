@@ -1,0 +1,285 @@
+@use '../global' as *;
+
+body,
+html {
+	color: $color-secondary;
+	font-family: "Raleway", sans-serif;
+	font-optical-sizing: auto;
+	font-size: 16px;
+	font-style: normal;
+	margin-top: 0 !important;
+	scroll-behavior: smooth;
+}
+
+.section-separation {
+	padding: 100px 0;
+}
+
+#wpadminbar {
+	display: none !important;
+}
+
+.container {
+	padding: 0 35px;
+}
+
+.nojq.mobile {
+	display: none;
+}
+
+.btn,
+.btn input {
+	@extend %transition;
+
+	border-radius: 10px;
+	color: #fff;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 18px;
+	padding: 10px 15px;
+	text-transform: uppercase;
+
+	@media screen and (min-width:$md) {
+		font-size: 14px;
+	}
+
+	&-primary {
+		background: $color-primary ;
+
+		&:hover {
+			@extend %transition;
+			background: $color-tertiary;
+		}
+	}
+
+	&-tertiary {
+		background: $color-tertiary ;
+
+		&:hover {
+			@extend %transition;
+			background: $color-primary;
+		}
+	}
+}
+
+
+.parallax {
+	overflow-x: hidden;
+	overflow-y: auto;
+	perspective: 1px;
+
+	.fondo {
+		height: auto;
+		left: 50%;
+		min-height: 100%;
+		min-width: 100%;
+		position: absolute;
+		top: 50%;
+		transform: translate(-50%, -50%) scale(2);
+		width: auto;
+	}
+
+	.container {
+		position: relative;
+		z-index: 1;
+	}
+
+}
+
+.section-title {
+	color: $color-tertiary;
+	font-size: 14px;
+	font-weight: bolder;
+	line-height: 17px;
+	text-transform: uppercase;
+}
+
+.newspaper {
+	column-gap: 60px;
+	column-width: 250px;
+
+	ul {
+		list-style-type: disc;
+		margin: 20px;
+
+		li {
+			margin: 15px 0;
+		}
+
+	}
+}
+
+.lightbox-container {
+	z-index: 9999999999;
+}
+
+
+.capitalized {
+	p {
+		font-size: 14px;
+		line-height: 25px;
+
+		&:first-of-type {
+			&::first-letter {
+				@media screen and (min-width:$md) {
+					--webkit-initial-letter: 1.25;
+					font-size-adjust: 0.5;
+					font-size-adjust: from-font;
+					font-weight: bold;
+					initial-letter: 1.25;
+				}
+			}
+		}
+	}
+}
+
+.content {
+	ul {
+		li {
+			display: block;
+			margin-bottom: 15px;
+		}
+	}
+}
+
+.btn-faqs,
+.btn-blogs {
+	@extend %transition;
+	align-items: center;
+	border: 2px solid $color-primary;
+	border-radius: 15px;
+	color: $color-primary;
+	display: flex;
+	height: 70px;
+	margin-bottom: 20px;
+	padding: 16px;
+	position: relative;
+	width: 217px;
+
+	span {
+		@extend %transition;
+		font-size: 14px;
+		font-weight: 900;
+		line-height: 17px;
+		margin-left: 10px;
+		text-transform: uppercase;
+	}
+
+	&:hover {
+		@extend %transition;
+		border: 2px solid $color-tertiary;
+		color: $color-tertiary;
+
+		path:first-of-type {
+			@extend %transition;
+			fill: $color-tertiary;
+			z-index: -1;
+		}
+	}
+
+}
+
+.ellipsis-3 {
+	-webkit-box-orient: vertical;
+	display: box;
+	-webkit-line-clamp: 3;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+
+.pagination {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	justify-content: center;
+	margin-top: 50px;
+
+	.page-numbers {
+		@extend %transition;
+		background: lighten($color-primary, 10%);
+		border-radius: 5px;
+		color: #fff;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 14px;
+		margin: 0;
+		padding: 5px 10px;
+		text-transform: uppercase;
+
+		&:hover {
+			@extend %transition;
+			background: $color-primary;
+		}
+	}
+
+	.current {
+		opacity: 0.4;
+	}
+
+	.next,
+	.prev {
+		@extend %transition;
+		align-items: center;
+		background: none;
+		color: $color-primary;
+		display: flex;
+		position: relative;
+
+		&:hover {
+			@extend %transition;
+			background: none;
+			color: darken($color-primary, 10%);
+		}
+
+		span {
+			padding: 0 8px;
+		}
+
+		svg {
+			fill: $color-primary;
+		}
+	}
+
+}
+
+
+.blur {
+	filter: blur(5px);
+}
+
+.parallax {
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+.bg-sp {
+	background: rgb(248, 248, 248);
+	background: linear-gradient(180deg, rgba(248, 248, 248, 1) 72%, rgba(255, 255, 255, 1) 72%, rgba(248, 248, 248, 1) 100%);
+	background: linear-gradient(180deg, rgba(248, 248, 248, 1) 72%, rgba(255, 255, 255, 1) 72%, rgba(248, 248, 248, 1) 100%);
+	background: linear-gradient(180deg, rgba(248, 248, 248, 1) 72%, rgba(255, 255, 255, 1) 72%, rgba(255, 255, 255, 1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f8f8f8", endColorstr="#f8f8f8", GradientType=1);
+
+	@media screen and (min-width:$md) {
+		background: $color-gray !important;
+	}
+}
+
+//.fuente {}
+
+
+.bg-effect {
+	display: none;
+
+	@media screen and (min-width:$md) {
+		background-attachment: fixed;
+		background-position: 330px bottom;
+		background-repeat: no-repeat;
+	}
+}
+
+.wpcf7-response-output {
+	display: none !important;
+}

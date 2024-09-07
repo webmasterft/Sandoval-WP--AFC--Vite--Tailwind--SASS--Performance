@@ -1,0 +1,44 @@
+@use '../global' as *;
+
+.is-ajax-search-result {
+	border-radius: 5px !important;
+	box-shadow: 0 0 2px 3px #ccc !important;
+	max-width: 450px;
+
+	.is-ajax-search-post {
+		border-bottom: 0;
+		border-radius: 5px;
+		margin-bottom: 10px;
+		padding: 5px 10px;
+
+		&:hover {
+			background: #b9b9b9 !important;
+
+			a {
+				color: #fff;
+			}
+
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.is-title {
+		a {
+			color: $color-secondary;
+			font-weight: 700;
+
+			&::before {
+				content: '>';
+
+			}
+		}
+	}
+
+	.is-ajax-result-description,
+	.meta {
+		display: none !important;
+	}
+}

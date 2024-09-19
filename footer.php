@@ -23,8 +23,9 @@
 			</section>
 			<?php endif; ?>
 
-			<div class="contact-form text-center md:text-left">
-			<?php  echo do_shortcode('[contact-form-7 id="8f7b649" title="Formulario Nuestro Boletín"]'); ?>
+			<div id="boletin" class="contact-form text-center md:text-left">
+			<p class="text-primary uppercase text-sm mb-[15px] font-bold">Recibe nuestro boletín:</p>
+			<?php  echo do_shortcode('[ninja_form id=1]'); ?>
 			</div>
 			<p class="text-white text-[12px] font-medium uppercase hidden md:block ">Copyright 2024®  | Powered by Gestion.agency</p>
 		</div>

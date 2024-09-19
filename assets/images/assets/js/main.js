@@ -58,14 +58,5 @@
       jQuery(".header").removeClass("scrolled");
     }
   });
-  var checkDivInterval = setInterval(function() {
-    if (jQuery("#info-form nf-field").length) {
-      var divs = jQuery("#info-form nf-field");
-      divs.slice(0, 5).wrapAll("<div class='left-panel'></div>");
-      clearInterval(checkDivInterval);
-    } else {
-      console.log("Div not found, checking again...");
-    }
-  }, 2e3);
 })();
 //# sourceMappingURL=main.js.map

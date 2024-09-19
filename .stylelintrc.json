@@ -3,6 +3,12 @@
   "rules": {
     "indentation": "tab",
     "max-nesting-depth": 5,
-    "selector-max-id": 1
+    "selector-max-id": 1,
+    "selector-no-qualifying-type": [
+      true,
+      {
+        "ignore": ["attribute", "class"]
+      }
+    ]
   }
 }

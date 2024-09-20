@@ -9,6 +9,6 @@
 		<?php else :?>
 			<!-- <img class="hidden md:block z-[1] absolute top-[90px] left-[-220px]" src="<?php the_sub_field('imagen_doctor');?>" alt=""> -->
 		<?php endif;?>
-		<?php  echo do_shortcode('[ninja_form id=4]'); ?>
+		<?php  echo do_shortcode('[ninja_form id=6]'); ?>
 	</div>
 

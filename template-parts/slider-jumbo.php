@@ -1,22 +1,22 @@
 
 
 <?php if( get_row_layout() == 'slider_principal' ): ?>
-		<section class="relative jumbo-slider max-w-[2400px]">
-			<section class="splide jumbo-splide" aria-label="Home slider">
+		<section class="relative jumbo-slider max-w-[2400px] m-[auto]">
+			<section class="splide jumbo-splide md:!h-[500px]" aria-label="Home slider">
 				<div class="splide__track">
-					<ul class="splide__list">
-						<?php if( have_rows('slide') ): while( have_rows('slide') ) : the_row();
+					<ul class="splide__list md:!h-[500px]">
+						<?php $count=0; if( have_rows('slide') ): while( have_rows('slide') ) : the_row();
 						$imgDesktop = get_sub_field('imagen_de_fondo_desktop');
 						$imgMobile = get_sub_field('imagen_de_fondo_mobile');
 						?>
-						<li class="splide__slide relative md:h-[410px] relative">
+						<li class="splide__slide relative relative">
 							<picture class="md:absolute md:top-0 md:left-0 w-full z-0">
 								<source media="(min-width:1080px)"
 									srcset="<?php echo esc_url($imgDesktop['url']); ?>">
-								<img class="object-cover w-full md:h-[410px]" src="<?php echo esc_url($imgMobile['url']);?>" alt="slide"/>
+								<img <?php echo $priority = $count === 0 ? 'fetchpriority="high" loading="eager"' : 'loading="lazy"';?> class="object-cover w-full md:min-h-[500px]" width="800" height="410" src="<?php echo esc_url($imgMobile['url']);?>" alt="slide"/>
 							</picture>
 							<div class="container content h-full relative z-[1] md:flex md:justify-end md:items-end w-full mt-[30px] md:-mt-0">
-								<div class="text-center md:text-left w-full md:max-w-[400px] mb-[50px]">
+								<div class="text-center md:text-left w-full min-h-[235px] md:max-w-[400px] mb-[50px]">
 								<?php if(get_sub_field('titulo')): ?>
 								<h1 class="text-primary text-[30px] leading-[36px] md:text-[44px] md:leading-[48px] font-bold mb-[10px]">
 									<?php the_sub_field('titulo'); ?></h1>
@@ -30,7 +30,7 @@
 								<?php endif; ?>
 
 								<?php if(get_sub_field('descripcion')): ?>
-								<p class="text-primary text-[14px] leading-[16px] md:text-[18px] md:leading-[22px] font-extrabold mb-[10px] md:max-w-[260px]">
+								<p class="text-primary text-[14px] leading-[16px] md:text-[18px] md:leading-[22px] font-extrabold mb-[10px] md:max-w-[350px]">
 									<?php the_sub_field('descripcion'); ?>
 								</p>
 								<?php endif; ?>
@@ -48,13 +48,27 @@
 							</div>
 						</li>
 
-						<?php endwhile; endif;?>
+						<?php $count++; endwhile; endif;?>
 					</ul>
 				</div>
 			</section>
 		</section>
 <?php endif;?>
 
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+	if (jQuery('.jumbo-splide').length > 0) {
+    var splide = new Splide('.jumbo-splide', {
+      arrows: false,
+      pagination: true,
+      perPage: 1,
+      perMove: 1,
+      type: 'loop',
+    });
+    splide.mount();
+  }
+});
+</script>
 
 <style>
 	.splide__pagination__page.is-active{

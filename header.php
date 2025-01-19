@@ -11,12 +11,63 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+<link rel="preload" href="<?php echo plugins_url( 'add-search-to-menu/public/css/ivory-search.min.css?ver=5.5.8' );?>" as="style">
+<link rel="preload" href="<?php echo get_theme_file_uri( 'assets/css/splide.min.css?ver=6.7.1' );?>" as="style">
+<link rel="preload" href="<?php echo get_theme_file_uri( 'assets/css/lightbox.min.css?ver=3.3.2' );?>" as="style">
+<link rel="preload" href="<?php echo get_theme_file_uri( 'assets/css/tailwind.css?ver=3.3.2' );?>" as="style">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-<link href="
-https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
-" rel="stylesheet">
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-PKF1F4DS7K"></script>
+
+<script>
+// Function to log LCP details and initialize gtag
+function handleLCP(entry) {
+    console.log('LCP element:', entry.element);
+    console.log('LCP time:', entry.startTime, 'ms');
+    console.log('LCP size:', entry.size);
+    console.log('LCP URL:', entry.url || 'N/A');
+
+    // Insert the gtag code after LCP is detected
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-PKF1F4DS7K');
+
+    console.log('gtag initialized after LCP.');
+}
+
+// Create a PerformanceObserver to observe LCP
+const observer = new PerformanceObserver((list) => {
+    const entries = list.getEntries();
+    const lcpEntry = entries[entries.length - 1]; // Get the latest LCP entry
+
+    // Handle LCP and initialize gtag
+    handleLCP(lcpEntry);
+
+    // Disconnect the observer after LCP is detected
+    observer.disconnect();
+});
+
+// Start observing LCP
+observer.observe({ type: 'largest-contentful-paint', buffered: true });
+
+// Optional: Log a message if LCP is not detected within a certain time
+setTimeout(() => {
+    if (!observer.takeRecords().length) {
+        console.log('LCP not detected within the timeout period.');
+    }
+}, 10000); // 10-second timeout
+
+</script>
+
 
 <?php wp_head(); ?>
 </head>
@@ -26,7 +77,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 
 <header class="header bg-primary fixed top-0 left-0 w-full z-[99999]">
 
-	<section class="container mx-auto z-10 relative py-[10px] md:py-[15px] flex justify-between items-center">
+	<section class="container mx-auto z-10 py-[10px] md:py-[15px] flex justify-between items-center">
 		<a class="logo" href="<?php echo home_url(); ?>">
 			<?php get_template_part( 'template-parts/svg/logo-blanco', 'page' ); ?>
 		</a>
@@ -35,7 +86,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 		</div>
 		<div class="main-nav">
 			<a class="flex justify-end mb-[10px] md:hidden" href="<?php echo home_url(); ?>">
-				<img class="" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-menu-mobile.webp" alt="Logo">
+				<img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-menu-mobile.webp" alt="Logo">
 			</a>
 
 			<div class="py-[20px] md:hidden">

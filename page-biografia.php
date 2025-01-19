@@ -6,7 +6,7 @@ if( have_rows('bio') ): while( have_rows('bio') ) : the_row();
 ?>
 	<section class="bg-gray relative md:h-[100vh] overflow-hidden">
 		<div class="container relative md:pt-[25px] md:pb-[70px] h-full">
-			<img class="absolute md:fixed bottom-0 right-[-55px] md:right-0 z-[1] w-[279px] md:w-[414px]" src="<?php echo get_template_directory_uri(); ?>/assets/images/src/images/Photo-DrBernardo.webp" alt="">
+			<img id="sandoval-avatar" loading="lazy" class="absolute md:fixed bottom-0 right-[-55px] md:right-0 z-[1] w-[279px] md:w-[414px]" src="<?php echo get_template_directory_uri(); ?>/assets/images/src/images/Photo-DrBernardo.webp" alt="">
 			<div class="hidden md:block absolute right-0 bottom-0 z-0">
 				<?php get_template_part( 'template-parts/svg/svg-blanco', 'page' );?>
 			</div>

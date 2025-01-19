@@ -31,7 +31,7 @@
 										<?php endif; ?>
 
 										<?php if($imagen): ?>
-										<img class="hidden md:block" src="<?php echo esc_url($imagen['url']); ?>" alt="">
+										<img loading="lazy" class="hidden md:block" src="<?php echo esc_url($imagen['url']); ?>" alt="">
 										<?php endif; ?>
 									</a>
 								</li>

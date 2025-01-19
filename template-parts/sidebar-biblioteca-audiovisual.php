@@ -11,7 +11,7 @@
 
 			<?php if( have_rows('side_bar',14) ): while( have_rows('side_bar',14) ) : the_row();?>
 				<a href="<?php the_sub_field('video_url') ?>" data-lightbox>
-					<img class="" src="<?php the_sub_field('thumbnail_video');?>" alt="Video">
+					<img width="430" height="243" loading="lazy" class="w-full" src="<?php the_sub_field('video_imagen');?>" alt="Video">
 				</a>
 			<?php endwhile;endif;?>
 

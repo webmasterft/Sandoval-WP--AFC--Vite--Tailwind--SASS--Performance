@@ -25,7 +25,11 @@
 
 			<div id="boletin" class="contact-form text-center md:text-left">
 			<p class="text-primary uppercase text-sm mb-[15px] font-bold">Recibe nuestro boletín:</p>
-			<?php  echo do_shortcode('[ninja_form id=1]'); ?>
+			
+			<div class="ninja-form-container-1">
+				<?php  echo do_shortcode('[ninja_form id=1]'); ?>
+			</div>
+			
 			</div>
 			<p class="text-white text-[12px] font-medium uppercase hidden md:block ">Copyright 2024®  | Powered by Gestion.agency</p>
 		</div>

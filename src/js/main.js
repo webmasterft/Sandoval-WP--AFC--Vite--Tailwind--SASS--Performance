@@ -1,4 +1,18 @@
+'use strict';
+
+import toggleAvatarVisibility from './components/avatar-observer';
 (function () {
+
+// Check for avatar and invoke the function if it exists
+if (document.getElementById("sandoval-avatar")) {
+  toggleAvatarVisibility();
+}
+
+
+
+
+
+
   jQuery('#hamburguer').on('click', function (e) {
     e.preventDefault();
     jQuery('main').addClass('blur');
@@ -44,17 +58,6 @@
     }
   });
 
-  if (jQuery('.jumbo-splide').length > 0) {
-    var splide = new Splide('.jumbo-splide', {
-      arrows: false,
-      pagination: true,
-      perPage: 1,
-      perMove: 1,
-      type: 'loop',
-    });
-    splide.mount();
-  }
-
   window.addEventListener('scroll', () => {
     if (window.scrollY > 100 && window.innerWidth > 1024) {
       jQuery('.header').addClass('scrolled');
@@ -73,4 +76,40 @@
       console.log('Div not found, checking again...');
     }
   }, 2000);
+
+  /* document.addEventListener('DOMContentLoaded', function () {
+    // Select two containers for different forms
+    let formContainers = [
+      {
+        container: document.querySelector('.ninja-form-container-1'),
+        formId: 1,
+      },
+      {
+        container: document.querySelector('.ninja-form-container-6'),
+        formId: 6,
+      },
+    ];
+
+    let observer = new IntersectionObserver(function (entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let formContainer = entry.target;
+          let formId = formContainer.getAttribute('data-form-id');
+
+          // Replace the container content with the corresponding Ninja Form shortcode
+          formContainer.innerHTML = '[ninja_form id=' + formId + ']';
+          observer.unobserve(entry.target); // Stop observing once the form is loaded
+        }
+      });
+    });
+
+    // Observe each container
+    formContainers.forEach((formData) => {
+      let { container, formId } = formData;
+      if (container) {
+        container.setAttribute('data-form-id', formId); // Set form ID dynamically
+        observer.observe(container);
+      }
+    });
+  }); */
 })();

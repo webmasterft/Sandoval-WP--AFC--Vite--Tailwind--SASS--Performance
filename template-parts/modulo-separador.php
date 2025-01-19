@@ -8,7 +8,7 @@
 ?>
 
 		<section class="relative bg-primary py-[30px] md:py-[48px] parallax" style="background-image:url('<?php echo $imgFondo["url"]?>')">
-			<img class="gradient z-[1] absolute top-0 left-0 object-cover h-full w-full" src="<?php echo $gradient['url']; ?>" alt="">
+			<img loading="lazy" class="gradient z-[1] absolute top-0 left-0 object-cover h-full w-full" src="<?php echo $gradient['url']; ?>" alt="" width="1227" height="170">
 			<div class="container md:flex md:justify-between md:items-center z-[10]">
 				<div class="flex  md:items-center">
 					<div class="mt-[10px] md:mt-0">

@@ -150,23 +150,38 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap', false );
-
-		wp_enqueue_style( 'bathe', get_theme_file_uri( 'assets/css/main.css' ), array(), '3.0.1' );
-		wp_enqueue_style( 'tailwind', get_theme_file_uri( 'assets/css/tailwind.css' ), array(), '3.3.2' );
-		wp_enqueue_style( 'lightboxCSS', get_theme_file_uri( 'assets/css/lightbox.min.css' ), array(), '3.3.2' );
-
-		wp_enqueue_script( 'jquery', get_theme_file_uri( 'assets/js/jquery.js' ), array(), '3.0.1', true );
-		wp_enqueue_script( 'lightbox', get_theme_file_uri( 'assets/js/lightbox.js' ), array(), '3.0.1', true );
-
-		wp_enqueue_script( 'splide', "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js",  false );
-
-		wp_enqueue_script( 'bathe', get_theme_file_uri( 'assets/js/main.js' ), array(), '3.0.1', true );
-		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-			wp_enqueue_script( 'comment-reply' );
-		}
+	
+		wp_enqueue_style( 'bathe', get_theme_file_uri( 'assets/css/main.css' ), array());
+		wp_enqueue_style( 'tailwind', get_theme_file_uri( 'assets/css/tailwind.css' ), array());
+		wp_enqueue_style( 'lightboxCSS', get_theme_file_uri( 'assets/css/lightbox.min.css' ), array());
+		wp_enqueue_style( 'splideCSS', get_theme_file_uri( 'assets/css/splide.min.css' ), array());
 	}
 );
+
+
+
+// Enqueue scripts with defer attribute
+function custom_enqueue_scripts() {
+	// Register and enqueue scripts
+	wp_enqueue_script( 'jquery', get_theme_file_uri( 'assets/js/jquery.min.js' ));
+	wp_enqueue_script('splide', get_theme_file_uri('assets/js/splide.js'), array('jquery'), '3.0.1', true);
+	wp_enqueue_script('lightbox', get_theme_file_uri('assets/js/lightbox.js'), array('jquery'), '3.0.1', true);
+	wp_enqueue_script( 'mainJS', get_theme_file_uri( 'assets/js/main.js' ), array('jquery'), '3.0.1', true );
+
+	// Add defer attribute to specific scripts
+	add_filter('script_loader_tag', function($tag, $handle, $src) {
+			// List of handles to defer
+			$defer_scripts = ['jquery', 'splide', 'lightbox', 'mainJS'];
+			
+			if (in_array($handle, $defer_scripts, true)) {
+					// Add defer attribute
+					return str_replace(' src', ' defer src', $tag);
+			}
+
+			return $tag;
+	}, 10, 3);
+}
+add_action('wp_enqueue_scripts', 'custom_enqueue_scripts');
 
 
 // Function to track post views
@@ -190,3 +205,55 @@ function get_post_views(){
   return $views;
 }
 
+/*PERFORMANCE*/
+function remove_admin_bar() {
+	return false;
+}
+add_filter( 'show_admin_bar', 'remove_admin_bar' );
+
+
+
+// Add lazy loading to the_post_thumbnail
+add_filter( 'wp_get_attachment_image_attributes', 'add_lazy_loading_to_thumbnail', 10, 3 );
+
+function add_lazy_loading_to_thumbnail( $attr, $attachment, $size ) {
+    // Check if 'loading' attribute already exists
+    if ( !isset( $attr['loading'] ) ) {
+        $attr['loading'] = 'lazy'; // Add lazy loading attribute
+    }
+    return $attr;
+}
+
+// remove dashicons in frontend to non-admin
+function wpdocs_dequeue_dashicon() {
+	if (current_user_can( 'update_core' )) {
+			return;
+	}
+	wp_deregister_style('dashicons');
+}
+add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
+
+
+function enqueue_admin_css() {
+	if ( is_admin() ) { 
+			wp_enqueue_style( 
+					'block-library-admin', 
+					get_template_directory_uri() . '/wp-includes/css/dist/block-library/style.min.css', 
+					array(), 
+					'6.7.1' 
+			);
+	}
+}
+add_action( 'admin_enqueue_scripts', 'enqueue_admin_css' );
+
+
+
+
+
+function agregar_encabezados_cache() {
+	if ( !is_admin() ) {
+			header("Cache-Control: public, max-age=31557600");
+			header("Expires: " . gmdate('D, d M Y H:i:s', time() + 31557600 ) . ' GMT');
+	}
+}
+add_action('send_headers', 'agregar_encabezados_cache');

@@ -1,4 +1,29 @@
+function toggleAvatarVisibility() {
+  const avatar = document.getElementById("sandoval-avatar");
+  const footer = document.querySelector("footer");
+  if (avatar && footer) {
+    avatar.style.transition = "opacity 0.5s ease";
+    avatar.style.opacity = "1";
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          avatar.style.opacity = "0";
+        } else {
+          avatar.style.opacity = "1";
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0
+    });
+    observer.observe(footer);
+  }
+}
 (function() {
+  if (document.getElementById("sandoval-avatar")) {
+    toggleAvatarVisibility();
+  }
   jQuery("#hamburguer").on("click", function(e) {
     e.preventDefault();
     jQuery("main").addClass("blur");
@@ -41,16 +66,6 @@
       jQuery(".minus").hide();
     }
   });
-  if (jQuery(".jumbo-splide").length > 0) {
-    var splide = new Splide(".jumbo-splide", {
-      arrows: false,
-      pagination: true,
-      perPage: 1,
-      perMove: 1,
-      type: "loop"
-    });
-    splide.mount();
-  }
   window.addEventListener("scroll", () => {
     if (window.scrollY > 100 && window.innerWidth > 1024) {
       jQuery(".header").addClass("scrolled");

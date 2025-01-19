@@ -24,9 +24,11 @@
 	}
 
 	&.open {
-		left: 0;
+		left: auto;
 		opacity: 1;
+		right: 0;
 		width: 80%;
+
 	}
 }
 

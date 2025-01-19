@@ -15,7 +15,7 @@
 					<?php endif; ?>
 
 					<div class="flex gap-[25px] md:w-[352px]">
-						<img class="shrink-0 rounded w-[131px] h-[131px]" src="<?php the_sub_field('foto'); ?>" alt=""/>
+						<img loading="lazy" class="shrink-0 rounded w-[131px] h-[131px]" src="<?php the_sub_field('foto'); ?>" alt=""/>
 						<p class="text-primary text-[22px] leading-[24px] md:text-[25px] md:leading-[28px] font-semibold">
 							<?php the_sub_field('quote'); ?>
 						</p>

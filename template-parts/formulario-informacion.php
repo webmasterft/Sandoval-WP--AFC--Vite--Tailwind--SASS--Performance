@@ -5,10 +5,15 @@
 		</div>
 		<p class="text-primary uppercase text-sm mb-[15px] font-black">Solicita más información:</p>
 		<?php if(!is_page('contactos')): ?>
-			<img class="hidden md:block z-[1] absolute bottom-[-63px] left-[-160px]" src="<?php echo get_template_directory_uri() . '/assets/images/src/images/IMG_Contactos.webp';?>" alt="">
+			<img loading="lazy" class="hidden md:block z-[1] absolute bottom-[-63px] left-[-160px]" src="<?php echo get_template_directory_uri() . '/assets/images/src/images/IMG_Contactos.webp';?>" alt="">
 		<?php else :?>
 			<!-- <img class="hidden md:block z-[1] absolute top-[90px] left-[-220px]" src="<?php the_sub_field('imagen_doctor');?>" alt=""> -->
 		<?php endif;?>
-		<?php  echo do_shortcode('[ninja_form id=6]'); ?>
+
+		<div class="ninja-form-container-6">
+    	<?php  echo do_shortcode('[ninja_form id=6]'); ?>
+		</div>
+
+		
 	</div>
 
